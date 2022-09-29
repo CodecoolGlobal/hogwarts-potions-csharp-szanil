@@ -18,5 +18,17 @@ namespace HogwartsPotions.Services
         {
             _context = context;
         }
+
+        public async Task<List<Potion>> GetAllPotions()
+        {
+            return await _context.Potions
+                .Include(p => p.Student)
+                .Include(p => p.Ingredients)
+                .Include(p => p.Recipe.Student)
+                .Include(p => p.Recipe.Ingredients)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
     }
 }
