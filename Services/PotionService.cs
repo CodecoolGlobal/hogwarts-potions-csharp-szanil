@@ -161,5 +161,12 @@ namespace HogwartsPotions.Services
                 .FirstOrDefaultAsync(p => p.ID == potionId);
         }
 
+        public async Task<List<Recipe>> GetAllRecipe()
+        {
+            return await _context.Recipes
+                .Include(r => r.Ingredients)
+                .Include(r => r.Student)
+                .ToListAsync();
+        }
     }
 }
