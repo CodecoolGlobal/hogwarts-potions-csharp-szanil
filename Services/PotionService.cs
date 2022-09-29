@@ -116,6 +116,25 @@ namespace HogwartsPotions.Services
         {
             var potion = GetPotion(potionId).Result;
 
+            var knownIngredient = await _context.Ingredients
+                .FirstOrDefaultAsync(i => i.Name == ingredient.Name);
+            
+            if (potion.Ingredients.Count < 5)
+            {
+                if (knownIngredient == null)
+                {
+                    var newIngredient = new Ingredient { Name = ingredient.Name };
+                    potion.Ingredients.Add(newIngredient);
+                }
+                else
+                {
+                    potion.Ingredients.Add(knownIngredient);
+                }
+
+                potion = _context.Potions.Update(potion).Entity;
+                await _context.SaveChangesAsync();
+
+            }
             
             return potion;
         }
