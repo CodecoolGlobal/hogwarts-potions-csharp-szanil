@@ -103,5 +103,14 @@ namespace HogwartsPotions.Services
             await _context.SaveChangesAsync();
             return potion;
         }
+
+        public async Task<Potion> BrewFreshPotion(Potion potion)
+        {
+            Potion newPotion = new Potion { Student = _context.Students.First(s => s.ID == potion.Student.ID) };
+            var returnPotion = _context.Potions.Add(newPotion);
+            await _context.SaveChangesAsync();
+            return returnPotion.Entity;
+        }
+
     }
 }
