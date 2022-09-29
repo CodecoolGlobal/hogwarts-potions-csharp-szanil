@@ -35,4 +35,12 @@ public class RoomService : IRoomService
         return await _context.Rooms.Include(r => r.Residents).AsNoTracking().ToListAsync();
     }
 
+    public async Task UpdateRoom(long id, Room room)
+    {
+        var roomToUpdate = GetRoom(id).Result;
+        roomToUpdate.Capacity = room.Capacity;
+        _context.Rooms.Update(roomToUpdate);
+        await _context.SaveChangesAsync();
+    }
+
 }
