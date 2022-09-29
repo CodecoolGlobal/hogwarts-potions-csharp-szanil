@@ -134,6 +134,11 @@ namespace HogwartsPotions.Services
                 potion = _context.Potions.Update(potion).Entity;
                 await _context.SaveChangesAsync();
 
+                if (potion.Ingredients.Count == 5)
+                {
+                    var finalPotion = BrewingPotion(potion);
+                    return finalPotion.Result;
+                }
             }
             
             return potion;
