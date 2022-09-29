@@ -34,5 +34,12 @@ namespace HogwartsPotions.Controllers
             return Ok(await _potionService.BrewingPotion(potion));
         }
 
+        [HttpPost]
+        [Route("brew")]
+        public async Task<IActionResult> BrewFreshPotion([FromBody] Potion potion)
+        {
+            return Ok(await _potionService.BrewFreshPotion(potion));
+        }
+
     }
 }
