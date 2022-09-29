@@ -54,6 +54,20 @@ namespace HogwartsPotions.Services
             int recipeIndex = 0;
             var allRecipe = GetAllRecipe().Result;
 
+            foreach (var recipe in allRecipe)
+            {
+                if (recipe.Ingredients.Select(i => i.ID).ToList().SequenceEqual(potion.Ingredients.Select(i => i.ID).ToList()))
+                {
+                    match = true;
+                    var sameRecipe = allRecipe[recipeIndex];
+                    potion.Ingredients = sameRecipe.Ingredients;
+                    potion.Recipe = sameRecipe;
+                    potion.Name = $"{sameRecipe.Name}";
+                    potion.BrewingStatus = BrewingStatus.Replica;
+                    break;
+                }
+                recipeIndex++;
+            }
             
             potion = !_context.Potions.Contains(potion) ? _context.Potions.Add(potion).Entity : _context.Potions.Update(potion).Entity;
 
