@@ -49,4 +49,59 @@ public class DbInitializer
             context.Students.Add(s);
         }
         context.SaveChanges();
+
+        var ingredients = new Ingredient[]
+        {
+            new Ingredient{Name = "Abraxan hair"},
+            new Ingredient{Name = "Aconite"},
+            new Ingredient{Name = "Balm"},
+            new Ingredient{Name = "Banana"},
+            new Ingredient{Name = "Cat Hair"},
+            new Ingredient{Name = "Cheese"},
+            new Ingredient{Name = "Dandruff"},
+            new Ingredient{Name = "Doxy egg"},
+            new Ingredient{Name = "Eagle Owl Feather"},
+            new Ingredient{Name = "Exploding Ginger Eyelash"},
+            new Ingredient{Name = "Firefly"},
+            new Ingredient{Name = "Foxglove"},
+            new Ingredient{Name = "Ginger"},
+            new Ingredient{Name = "Granian hair"},
+            new Ingredient{Name = "Honey"},
+            new Ingredient{Name = "Horse hair"},
+            new Ingredient{Name = "Iguana blood"},
+            new Ingredient{Name = "Infusion of Wormwood"},
+            new Ingredient{Name = "Jewelweed"},
+            new Ingredient{Name = "Jobberknoll feather"},
+            new Ingredient{Name = "Kelp"},
+            new Ingredient{Name = "Knotgrass"},
+            new Ingredient{Name = "Lacewing Fly"},
+            new Ingredient{Name = "Lard"},
+            new Ingredient{Name = "Mandrake"},
+            new Ingredient{Name = "Morning dew"},
+            new Ingredient{Name = "Neem oil"},
+            new Ingredient{Name = "Niffler's Fancy"},
+            new Ingredient{Name = "Occamy egg"},
+            new Ingredient{Name = "Onion juice"},
+            new Ingredient{Name = "Pickled Slugs"},
+            new Ingredient{Name = "Ptolemy"},
+            new Ingredient{Name = "Rose"},
+            new Ingredient{Name = "Russian's Dragon Nails"},
+            new Ingredient{Name = "Saltpetre"},
+            new Ingredient{Name = "Shrivelfig"},
+            new Ingredient{Name = "Thaumatagoria"},
+            new Ingredient{Name = "Tormentil"},
+            new Ingredient{Name = "Urine"},
+            new Ingredient{Name = "Unicorn Hair"},
+            new Ingredient{Name = "Valerian"},
+            new Ingredient{Name = "Vervain infusion"},
+            new Ingredient{Name = "Wiggenbush"},
+            new Ingredient{Name = "Wool of Bat"},
+
+        };
+        foreach (Ingredient i in ingredients)
+        {
+            context.Ingredients.Add(i);
+        }
+        context.SaveChanges();
+
 }
