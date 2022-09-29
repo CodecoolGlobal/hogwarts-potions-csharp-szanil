@@ -128,4 +128,32 @@ public class DbInitializer
         }
         context.SaveChanges();
 
+        var potions = new Potion[]
+        {
+            new Potion
+            {
+                Name = "Potion of Random",
+                Student = students[0],
+                BrewingStatus = BrewingStatus.Discovery,
+                Recipe = recipes[0],
+                Ingredients = new List<Ingredient>
+                    { ingredients[4], ingredients[9], ingredients[14], ingredients[19], ingredients[24] }
+            },
+            new Potion
+            {
+                Name = "Potion of the Beginning",
+                Student = students[3],
+                BrewingStatus = BrewingStatus.Discovery,
+                Recipe = recipes[1],
+                Ingredients = new List<Ingredient>
+                    { ingredients[4], ingredients[3], ingredients[2], ingredients[1], ingredients[0] }
+            }
+        };
+
+        foreach (Potion p in potions)
+        {
+            context.Potions.Add(p);
+        }
+        context.SaveChanges();
+    }
 }
