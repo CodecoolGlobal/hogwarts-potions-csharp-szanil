@@ -20,6 +20,7 @@ namespace HogwartsPotions.Models
         }
 
         public async Task AddRoom(Room room)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             throw new NotImplementedException();
         }
@@ -47,6 +48,11 @@ namespace HogwartsPotions.Models
         public Task<List<Room>> GetRoomsForRatOwners()
         {
             throw new NotImplementedException();
+            modelBuilder.Entity<Room>().ToTable("Room");
+            modelBuilder.Entity<Student>().ToTable("Student");
+            modelBuilder.Entity<Ingredient>().ToTable("Ingredient");
+            modelBuilder.Entity<Recipe>().ToTable("Recipe");
+            modelBuilder.Entity<Potion>().ToTable("Potion");
         }
     }
 }
