@@ -43,4 +43,10 @@ public class RoomService : IRoomService
         await _context.SaveChangesAsync();
     }
 
+    public async Task DeleteRoom(long id)
+    {
+        _context.Rooms.Remove(GetRoom(id).Result);
+        await _context.SaveChangesAsync();
+    }
+
 }
