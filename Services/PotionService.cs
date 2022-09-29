@@ -30,5 +30,17 @@ namespace HogwartsPotions.Services
                 .ToListAsync();
         }
 
+        public async Task<List<Potion>> GetPotionByStudentId(long studentId)
+        {
+            return await _context.Potions
+                .Include(p => p.Student)
+                .Include(p => p.Ingredients)
+                .Include(p => p.Recipe.Student)
+                .Include(p => p.Recipe.Ingredients)
+                .Where(p => p.Student.ID == studentId)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
     }
 }
