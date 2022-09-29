@@ -152,5 +152,14 @@ namespace HogwartsPotions.Services
             return similarRecipes;
         }
 
+        public async Task<Potion> GetPotion(long potionId)
+        {
+            return await _context.Potions
+                .Include(p => p.Student)
+                .Include(p => p.Ingredients)
+                .Include(p => p.Recipe)
+                .FirstOrDefaultAsync(p => p.ID == potionId);
+        }
+
     }
 }
