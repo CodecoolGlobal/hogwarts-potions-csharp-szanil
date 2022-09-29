@@ -48,5 +48,11 @@ namespace HogwartsPotions.Controllers
             return Ok(await _potionService.AddIngredient(potionId, ingredient));
         }
 
+        [HttpGet]
+        [Route("{potionId}/help")]
+        public async Task<IActionResult> SimilarPotions([FromRoute] long potionId)
+        {
+            return Ok(await _potionService.SimilarRecipes(potionId));
+        }
     }
 }
