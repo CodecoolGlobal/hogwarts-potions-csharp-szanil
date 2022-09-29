@@ -42,5 +42,24 @@ namespace HogwartsPotions.Services
                 .ToListAsync();
         }
 
+        public async Task<Potion> BrewingPotion(Potion potion)
+        {
+            if (!_context.Potions.Contains(potion))
+            {
+                potion = new Potion{Student = _context.Students.First(s => s.ID == potion.Student.ID), Ingredients = potion.Ingredients.OrderBy(i => i.ID).ToList() };
+            }
+            
+
+            bool match = false;
+            int recipeIndex = 0;
+            var allRecipe = GetAllRecipe().Result;
+
+            
+            potion = !_context.Potions.Contains(potion) ? _context.Potions.Add(potion).Entity : _context.Potions.Update(potion).Entity;
+
+            
+            await _context.SaveChangesAsync();
+            return potion;
+        }
     }
 }
