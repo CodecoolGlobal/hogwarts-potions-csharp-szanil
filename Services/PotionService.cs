@@ -144,5 +144,13 @@ namespace HogwartsPotions.Services
             return potion;
         }
 
+        public async Task<List<Recipe>> SimilarRecipes(long potionId)
+        {
+            var potion = GetPotion(potionId).Result;
+            var allRecipes = GetAllRecipe().Result;
+            var similarRecipes = allRecipes.Where(r => potion.Ingredients.All(i => r.Ingredients.Contains(i))).ToList();
+            return similarRecipes;
+        }
+
     }
 }
