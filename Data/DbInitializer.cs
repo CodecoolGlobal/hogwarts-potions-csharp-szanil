@@ -104,4 +104,28 @@ public class DbInitializer
         }
         context.SaveChanges();
 
+        var recipes = new Recipe[]
+        {
+            new Recipe
+            {
+                Name = "Potion of Random",
+                Student = students[0],
+                Ingredients = new List<Ingredient>
+                    { ingredients[4], ingredients[9], ingredients[14], ingredients[19], ingredients[24] }
+            },
+            new Recipe
+            {
+                Name = "Potion of the Beginning",
+                Student = students[3],
+                Ingredients = new List<Ingredient>
+                    { ingredients[4], ingredients[3], ingredients[2], ingredients[1], ingredients[0] }
+            }
+        };
+
+        foreach (Recipe r in recipes)
+        {
+            context.Recipes.Add(r);
+        }
+        context.SaveChanges();
+
 }
