@@ -112,5 +112,13 @@ namespace HogwartsPotions.Services
             return returnPotion.Entity;
         }
 
+        public async Task<Potion> AddIngredient(long potionId, Ingredient ingredient)
+        {
+            var potion = GetPotion(potionId).Result;
+
+            
+            return potion;
+        }
+
     }
 }
