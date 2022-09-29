@@ -25,4 +25,9 @@ public class RoomService : IRoomService
         await _context.SaveChangesAsync();
     }
 
+    public async Task<Room> GetRoom(long roomId)
+    {
+        return await _context.Rooms.Include(r => r.Residents).FirstOrDefaultAsync(r => r.ID == roomId);
+    }
+
 }
