@@ -15,5 +15,11 @@ namespace HogwartsPotions.Controllers
             _potionService = potionService;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllPotions()
+        {
+            return Ok(await _potionService.GetAllPotions());
+        }
+
     }
 }
