@@ -18,4 +18,18 @@ public class DbInitializer
         {
             return;   // DB has been seeded
         }
+
+        var rooms = new Room[]
+        {
+            new Room{Capacity = 3},
+            new Room{Capacity = 3},
+            new Room{Capacity = 3},
+            new Room{Capacity = 3}
+
+        };
+
+        foreach (Room r in rooms)
+        {
+            context.Rooms.Add(r);
+        }
 }
