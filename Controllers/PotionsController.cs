@@ -21,5 +21,12 @@ namespace HogwartsPotions.Controllers
             return Ok(await _potionService.GetAllPotions());
         }
 
+        [HttpGet]
+        [Route("{studentId}")]
+        public async Task<IActionResult> GetPotionByStudentId([FromRoute] long studentId)
+        {
+            return Ok(await _potionService.GetPotionByStudentId(studentId));
+        }
+
     }
 }
