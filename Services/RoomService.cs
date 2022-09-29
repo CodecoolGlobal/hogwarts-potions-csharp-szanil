@@ -30,4 +30,9 @@ public class RoomService : IRoomService
         return await _context.Rooms.Include(r => r.Residents).FirstOrDefaultAsync(r => r.ID == roomId);
     }
 
+    public async Task<List<Room>> GetAllRooms()
+    {
+        return await _context.Rooms.Include(r => r.Residents).AsNoTracking().ToListAsync();
+    }
+
 }
