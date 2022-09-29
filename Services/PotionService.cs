@@ -68,6 +68,34 @@ namespace HogwartsPotions.Services
                 }
                 recipeIndex++;
             }
+
+            if (!match)
+            {
+                var newIngredients = new List<Ingredient>
+                {
+                    await _context.Ingredients.FindAsync(potion.Ingredients[0].ID),
+                    await _context.Ingredients.FindAsync(potion.Ingredients[1].ID),
+                    await _context.Ingredients.FindAsync(potion.Ingredients[2].ID),
+                    await _context.Ingredients.FindAsync(potion.Ingredients[3].ID),
+                    await _context.Ingredients.FindAsync(potion.Ingredients[4].ID)
+
+                };
+                potion.Ingredients = newIngredients;
+                potion.Recipe = new Recipe
+                {
+                    Ingredients = potion.Ingredients,
+                    Student = potion.Student,
+                    Name = $"{potion.Student.Name}'s discovery #{await _context.Recipes.CountAsync(r => r.Student.ID == potion.Student.ID) + 1}"
+                };
+                potion.Name =
+                    $"{potion.Student.Name}'s discovery #{await _context.Recipes.CountAsync(r => r.Student.ID == potion.Student.ID) + 1}";
+                potion.BrewingStatus = BrewingStatus.Discovery;
+                foreach (var newPotionIngredient in potion.Ingredients)
+                {
+                    newPotionIngredient.Name = _context.Ingredients.First(i => i.ID == newPotionIngredient.ID).Name;
+                }
+                
+            }
             
             potion = !_context.Potions.Contains(potion) ? _context.Potions.Add(potion).Entity : _context.Potions.Update(potion).Entity;
 
