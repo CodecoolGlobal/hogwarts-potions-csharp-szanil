@@ -1,5 +1,7 @@
 using System.Text.Json.Serialization;
 using HogwartsPotions.Models;
+using HogwartsPotions.Services;
+using HogwartsPotions.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +29,7 @@ namespace HogwartsPotions
             services.AddDbContext<HogwartsContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<IPotionService, PotionService>();
             services.AddControllersWithViews();
         }
 
