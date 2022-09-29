@@ -32,4 +32,21 @@ public class DbInitializer
         {
             context.Rooms.Add(r);
         }
+        context.SaveChanges();
+
+        var students = new Student[]
+        {
+            new Student{HouseType = HouseType.Gryffindor, Name = "Harry Potter", PetType = PetType.Owl, Room = rooms[0]},
+            new Student{HouseType = HouseType.Gryffindor, Name = "Naville Longbottom", PetType = PetType.None, Room = rooms[0]},
+            new Student{HouseType = HouseType.Gryffindor, Name = "Hermione Granger", PetType = PetType.Cat, Room = rooms[0]},
+            new Student{HouseType = HouseType.Slytherin, Name = "Draco Malfoy", PetType = PetType.Owl, Room = rooms[1]},
+            new Student{HouseType = HouseType.Slytherin, Name = "Vincent Crabbe", PetType = PetType.Owl, Room = rooms[1]},
+            new Student{HouseType = HouseType.Slytherin, Name = "Gregory Goyle", PetType = PetType.Cat, Room = rooms[1]},
+            new Student{HouseType = HouseType.Hufflepuff, Name = "Cathrine Ratbeater", PetType = PetType.Cat, Room = rooms[2]},
+        };
+        foreach (Student s in students)
+        {
+            context.Students.Add(s);
+        }
+        context.SaveChanges();
 }
