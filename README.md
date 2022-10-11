@@ -8,7 +8,7 @@
 
 ## Prerequisites
 
-* Microsoft SQL Server
+* MSSQL, C#, Entity Framework Core, Asynchronous programming
 
 ## Installation
 
